@@ -1,5 +1,6 @@
 #ifndef PID_H
 #define PID_H
+#include <vector>
 
 class PID {
  public:
@@ -30,6 +31,9 @@ class PID {
    * @output The total PID error
    */
   double TotalError();
+    
+    //choose the parameter to modefy
+    void ChooseTheParameter(int index, double dp_para);
 
  private:
   /**
@@ -45,6 +49,21 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+    
+    //add some value
+    double pre_cte;
+    double total_error;
+    
+    //add twidodle value
+    int step;
+    bool use_twiddle;
+    int front_loop, back_loop;
+    double sum_err, best_err;
+    
+    int modify_index;
+    std::vector<double> dp;
+    
+    bool flag1, flag2;
 };
 
 #endif  // PID_H
