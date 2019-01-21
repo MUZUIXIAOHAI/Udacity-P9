@@ -1,3 +1,23 @@
+# About the PID parameter
+
+P - “proportion”
+It is inversely proportional to cte. The larger the cte, the larger the proportion adjustment.When the ratio coefficient is too large, the phenomenon of oscillation will occur.
+
+I - “integral”
+The integral part reduces the cumulative error, the sum of cte, and the drift with the center of the path.
+
+D - "differential"
+The differential part can sense the trend of decreasing error and move to the target more smoothly.
+
+
+## remove I
+When I removed the integral part, the vehicle's route was not very close to the center of the route.
+
+## how I choose my parameter
+At the beginning, I used my experience to adjust the PID parameters. When the vehicle kept moving left and right in the middle of the road, which led to the exit of the track, I appropriately reduced the proportional coefficient. I will increase the differential coefficient so that the vehicle can quickly return to the center of the road. And the integral coefficient, I gave you a small initial value at the beginning. When a suitable coefficient is found, my twiddle algorithm can run and cycle many times to find the optimal coefficient. After many cycles, I found the final parameters(P-0.133579, I-0.00026293, D-3.052983).
+
+---
+
 # CarND-Controls-PID
 Self-Driving Car Engineer Nanodegree Program
 
